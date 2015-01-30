@@ -22,9 +22,9 @@ var elements = {
 			'float': 'left',
 			'width': '130px',
 			'height': '30px',
-			'-moz-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
-			'-webkit-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
-			'box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
+			'-webkit-box-shadow': '0 8px 6px -6px black',
+	   		'-moz-box-shadow': '0 8px 6px -6px black',
+	        'box-shadow': '0 8px 6px -6px black',
 		};
 
 		var menu = $jConstruct('div').css(menuBoxCSS);
@@ -70,9 +70,9 @@ var project = {
 			'width': '100%',
 			'height': '340',
 			'overflow': 'hidden',
-			'-moz-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
-			'-webkit-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
-			'box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
+			'-webkit-box-shadow': '0 8px 6px -6px black',
+	   		'-moz-box-shadow': '0 8px 6px -6px black',
+	        'box-shadow': '0 8px 6px -6px black',
 		}).addChild(image);
 
 		return $jConstruct('div').css({
