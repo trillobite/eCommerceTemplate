@@ -28,6 +28,14 @@ var elements = {
 		};
 
 		var menu = $jConstruct('div').css(menuBoxCSS);
+		var menuItem0 = $jConstruct('div', {
+			text: 'Home',
+			id: 'menuItem0',
+		}).css(menuButtonCSS).event('mouseover', function() {
+			$('#menuItem0').css(menuButtonHover.on);
+		}).event('mouseout', function() {
+			$('#menuItem0').css(menuButtonHover.off);
+		});
 		var menuItem1 = $jConstruct('div', {
 			text: 'Shop',
 			id: 'menuItem1',
@@ -53,7 +61,7 @@ var elements = {
 			$('#menuItem3').css(menuButtonHover.off);
 		});
 
-		menu.addChild(menuItem1).addChild(menuItem2).addChild(menuItem3);
+		menu.addChild(menuItem0).addChild(menuItem1).addChild(menuItem2).addChild(menuItem3);
 		return menu;
 	}
 }
@@ -67,6 +75,8 @@ var project = {
 		});
 
 		var header = $jConstruct('div').css({
+			'background-image': 'url("./css/images/large4.gif")',
+			'background-size': '100%',
 			'width': '100%',
 			'height': '340',
 			'overflow': 'hidden',
