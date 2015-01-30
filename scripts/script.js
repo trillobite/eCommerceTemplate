@@ -75,7 +75,7 @@ var project = {
 		});
 
 		var header = $jConstruct('div').css({
-			'background-image': 'url("./css/images/large4.gif")',
+			'background-image': 'url("./css/images/large3.gif")',
 			'background-size': '100%',
 			'width': '100%',
 			'height': '340',
