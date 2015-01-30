@@ -1,9 +1,10 @@
 
-var project = {
-	body: function() {
+var elements = {
+	menuBox: function () {
+	
 		var menuBoxCSS = {
 			'width': '100%',
-			'height': '40px',
+			'height': '30px',
 			'text-align': 'center',
 		};
 		var menuButtonHover = {
@@ -17,10 +18,10 @@ var project = {
 		var menuButtonCSS = {
 			'font-family': 'arial',
 			'text-align': 'center',
-			'line-height': '40px',
+			'line-height': '30px',
 			'float': 'left',
 			'width': '130px',
-			'height': '40px',
+			'height': '30px',
 			'-moz-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
 			'-webkit-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
 			'box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
@@ -53,7 +54,12 @@ var project = {
 		});
 
 		menu.addChild(menuItem1).addChild(menuItem2).addChild(menuItem3);
+		return menu;
+	}
+}
 
+var project = {
+	body: function() {
 		var image = $jConstruct('image', {
 			src: './css/images/hipsterlogogenerator_1422579646895.png',
 		}).css({
@@ -62,7 +68,7 @@ var project = {
 
 		var header = $jConstruct('div').css({
 			'width': '100%',
-			'height': '400',
+			'height': '340',
 			'overflow': 'hidden',
 			'-moz-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
 			'-webkit-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
@@ -78,7 +84,7 @@ var project = {
 			'-moz-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
 			'-webkit-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
 			'box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
-		}).addChild(menu).addChild(header);
+		}).addChild(elements.menuBox()).addChild(header);
 	}
 }
 
