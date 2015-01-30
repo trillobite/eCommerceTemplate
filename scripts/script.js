@@ -88,17 +88,17 @@ var project = {
 
 		var main = $jConstruct('div').css({
 			'text-align': 'center',
-			'border-radius': '5px',
-			'background-color': '#DBDBDB',
+			//'border-radius': '5px',
+			'background-color': 'white',
 			//'border': '1px solid grey',
 			'width': '1024',
 			'height': '1000',
 			'margin': '0 auto',
 			//'z-index': '-1',
 			//'float': 'left',
-			'-moz-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
+			/*'-moz-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
 			'-webkit-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
-			'box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
+			'box-shadow': '0 4px 8px rgba(0,0,0,0.5)',*/
 		});
 
 		for(var i = 0; i < elements.menuBox().length; ++i) {
@@ -106,6 +106,17 @@ var project = {
 		}
 
 		main.addChild(header);
+
+		main.addChild($jConstruct('div').css({
+			'width': '100%',
+			'height': '500',
+			'border-radius': '5px',
+			'position': 'relative',
+			'float': 'left',
+			'-moz-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
+			'-webkit-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
+			'box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
+		}))
 
 		return main;
 	}
