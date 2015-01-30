@@ -12,10 +12,12 @@ var elements = {
 				'background-color': '#ABABAB',
 			},
 			off: {
-				'background-color': 'white',
+				'background-color': '#DBDBDB',
 			},
 		}
 		var menuButtonCSS = {
+			'background-color': '#DBDBDB',
+			'border-radius': '5px',
 			'font-family': 'arial',
 			'text-align': 'center',
 			'line-height': '30px',
@@ -77,6 +79,7 @@ var project = {
 		var header = $jConstruct('div').css({
 			'background-image': 'url("./css/images/large3.gif")',
 			'background-size': '100%',
+			'border-radius': '5px',
 			'width': '100%',
 			'height': '340',
 			'overflow': 'hidden',
@@ -87,6 +90,7 @@ var project = {
 
 		return $jConstruct('div').css({
 			'text-align': 'center',
+			'border-radius': '5px',
 			//'border': '1px solid grey',
 			'width': '1024',
 			'height': '1000',
