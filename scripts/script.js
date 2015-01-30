@@ -2,11 +2,6 @@
 var elements = {
 	menuBox: function () {
 	
-		var menuBoxCSS = {
-			'width': '100%',
-			'height': '30px',
-			'text-align': 'center',
-		};
 		var menuButtonHover = {
 			on: {
 				'background-color': '#ABABAB',
@@ -21,6 +16,9 @@ var elements = {
 			'font-family': 'arial',
 			'text-align': 'center',
 			'line-height': '30px',
+			'position': 'relative',
+			//'top': '-50',
+			//'z-index': '20',
 			'float': 'left',
 			'width': '130px',
 			'height': '30px',
@@ -29,7 +27,6 @@ var elements = {
 	        'box-shadow': '0 8px 6px -6px black',
 		};
 
-		var menu = $jConstruct('div').css(menuBoxCSS);
 		var menuItem0 = $jConstruct('div', {
 			text: 'Home',
 			id: 'menuItem0',
@@ -63,8 +60,7 @@ var elements = {
 			$('#menuItem3').css(menuButtonHover.off);
 		});
 
-		menu.addChild(menuItem0).addChild(menuItem1).addChild(menuItem2).addChild(menuItem3);
-		return menu;
+		return [menuItem0, menuItem1, menuItem2, menuItem3];
 	}
 }
 
@@ -82,23 +78,36 @@ var project = {
 			'border-radius': '5px',
 			'width': '100%',
 			'height': '340',
+			'z-index': '-1',
+			'float': 'left',
 			'overflow': 'hidden',
 			'-webkit-box-shadow': '0 8px 6px -6px black',
 	   		'-moz-box-shadow': '0 8px 6px -6px black',
 	        'box-shadow': '0 8px 6px -6px black',
 		}).addChild(image);
 
-		return $jConstruct('div').css({
+		var main = $jConstruct('div').css({
 			'text-align': 'center',
 			'border-radius': '5px',
+			'background-color': '#DBDBDB',
 			//'border': '1px solid grey',
 			'width': '1024',
 			'height': '1000',
 			'margin': '0 auto',
+			//'z-index': '-1',
+			//'float': 'left',
 			'-moz-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
 			'-webkit-box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
 			'box-shadow': '0 4px 8px rgba(0,0,0,0.5)',
-		}).addChild(elements.menuBox()).addChild(header);
+		});
+
+		for(var i = 0; i < elements.menuBox().length; ++i) {
+			main.addChild(elements.menuBox()[i]);
+		}
+
+		main.addChild(header);
+
+		return main;
 	}
 }
 
