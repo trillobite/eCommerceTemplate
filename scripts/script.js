@@ -1,4 +1,8 @@
 
+/*
+*/
+
+
 var elements = {
 	menuBox: function () {
 	
@@ -13,7 +17,7 @@ var elements = {
 		var menuButtonCSS = {
 			'background-color': '#DBDBDB',
 			'border-radius': '5px',
-			'font-family': 'arial',
+			'font-family': 'Open Sans',
 			'text-align': 'center',
 			'line-height': '30px',
 			'position': 'relative',
@@ -22,6 +26,7 @@ var elements = {
 			'float': 'left',
 			'width': '130px',
 			'height': '30px',
+			'cursor': 'pointer',
 			'-webkit-box-shadow': '0 8px 6px -6px black',
 	   		'-moz-box-shadow': '0 8px 6px -6px black',
 	        'box-shadow': '0 8px 6px -6px black',
@@ -73,6 +78,7 @@ var project = {
 		});
 
 		var header = $jConstruct('div').css({
+			'margin-top': '5px',
 			'background-image': 'url("./css/images/large3.gif")',
 			'background-size': '100%',
 			'border-radius': '5px',
@@ -107,9 +113,15 @@ var project = {
 
 		main.addChild(header);
 
-		main.addChild($jConstruct('div').css({
-			'width': '100%',
-			'height': '500',
+		main.addChild($jConstruct('div', {
+			id: 'mainBody',
+		}).css({
+			'font-family': 'Open Sans',
+			'margin-top': '10px',
+			'margin-bottom': '20px',
+			'padding': '60px',
+			'width': '904', //had to reduce width by 120px due to padding being 60px on each side.
+			//'height': '500',
 			'border-radius': '5px',
 			'position': 'relative',
 			'float': 'left',
@@ -122,7 +134,57 @@ var project = {
 	}
 }
 
+var templateFunctions = {
+    //Opens the text files, sends the data on resolve.
+	getData: function(fileName) {
+		console.log('getData called', fileName);
+		var dfd = new $.Deferred();
+	    $.get(fileName, function(data) {
+	    	console.log('got data', data);
+	    	dfd.resolve(data);
+	    });
+	    return dfd.promise;
+    },
+	changeText: function(filePath, elementID) {
+		console.log(filePath);
+		templateFunctions.getData(filePath)().done(function(data) {
+			console.log(data);
+			arrdb.get(elementID).text = data;
+			arrdb.get(elementID).refresh();
+			function scrollToTop() {
+				$('html, body').animate({ scrollTop: 0 }, 'fast');
+			}
+			setTimeout(scrollToTop, 300);
+		});
+	},
+};
 
-$(document).ready(function() {
-	project.body().appendTo('body');
-});
+var convertFonts = function(f) {
+	fonts = f ? f : fonts;
+	var tmp = [];
+	for(var i = 0; i < fonts.length; ++i) {
+		tmp[tmp.length] = fonts[i].replace(' ', '+') + '::latin';
+	}
+	return tmp;
+};
+
+WebFontConfig = { //creates a global variable.
+	google: { 
+		families: convertFonts(['Open+Sans', 'Lora', 'Raleway', 'Inconsolata', 'Special+Elite', 'Alegreya+Sans', 'Great+Vibes', 'Tangerine']),
+	},
+	active: function() {
+		project.body().appendTo('body').state.done(function() {
+			templateFunctions.changeText('./text/welcome.html', 'mainBody');
+		}); //ensures that all the fonts are loaded, before the page is rendered.
+	}
+};
+
+//Google fonts API, so I can select from many fonts.
+(function() {
+	var wf = document.createElement('script');
+	wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	wf.type = 'text/javascript';
+	wf.async = 'true';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(wf, s);
+})();
